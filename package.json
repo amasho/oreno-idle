@@ -1,0 +1,16 @@
+{
+  "name": "gakky-image-botkit",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": "https://github.com/amasho/gakky-image-botkit.git",
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amasho/gakky-image-botkit/issues"
+  },
+  "homepage": "https://gakky-image-botkit.herokuapp.com/",
+  "dependencies": {
+    "botkit": "^0.5.5"
+  }
+}
