@@ -34,6 +34,9 @@ controller.on('slash_command', function(bot, message) {
     case '/gakky':
       bot.replyPublic(message, 'https://pbs.twimg.com/media/DE8s-vCV0AAR-Z-.jpg');
       break;
+    case '/yoshioka-riho':
+      bot.replyPublic(message, 'http://file.auditiontd.blog.shinobi.jp/dodonbei10.jpg');
+      break;
     default:
       break;
   }
