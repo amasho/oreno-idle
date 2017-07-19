@@ -2,8 +2,8 @@ var botkit = require('botkit');
 
 var controller = botkit.slackbot({
   debug: false,
-  json_file_store: './simple_storage/'
-}).configureSlackApp({
+})
+.configureSlackApp({
   clientId: process.env.BOTKIT_SLACK_CLIENT_ID,
   clientSecret: process.env.BOTKIT_SLACK_CLIENT_SECRET,
   scopes: ['commands']
@@ -23,12 +23,9 @@ controller.setupWebserver(process.env.PORT, function(err, webserver) {
 controller.on('slash_command', function(bot, message) {
   switch (message.command) {
     case '/gakky':
-      var choices = message.text.split(',');
-      var choice = choices[Math.random() * choices.length | 0];
-      bot.replyPrivate(message, '<@' + message.user + '> *' + choice + '*');
+      bot.replyPublic(message, 'https://pbs.twimg.com/media/DE8s-vCV0AAR-Z-.jpg');
       break;
     default:
       break;
   }
 });
-
