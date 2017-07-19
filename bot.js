@@ -9,6 +9,16 @@ var controller = botkit.slackbot({
   scopes: ['commands']
 });
 
+var bot = controller.spawn({
+  token: process.env.token
+}).startRTM();
+
+bot.api.team.info({}, function(err, res) {
+  controller.storage.teams.save({
+    id: res.team.id
+  }, function(err) {});
+});
+
 controller.setupWebserver(process.env.PORT, function(err, webserver) {
   controller.createWebhookEndpoints(controller.webserver);
   controller.createOauthEndpoints(controller.webserver, function(err, req, res) {
