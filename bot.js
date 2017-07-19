@@ -33,7 +33,7 @@ slackBot.on('slash_command', function(bot, message) {
       bot.replyPublic(message, 'https://pbs.twimg.com/media/DE8s-vCV0AAR-Z-.jpg');
       break;
     case '/yoshioka-riho':
-      bot.replyPublic(message, 'http://file.auditiontd.blog.shinobi.jp/dodonbei10.jpg');
+      bot.replyPublic(message, 'https://i0.wp.com/free-style-info.com/wp-content/uploads/2017/07/yoshiokariho012-20170712.jpg');
       break;
     default:
       break;
