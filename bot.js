@@ -1,6 +1,6 @@
 var botkit = require('botkit');
 
-var controller = botkit.slackbot({
+var slackBot = botkit.slackbot({
   debug: false,
   json_file_store: './simple_storage/'
 })
@@ -10,17 +10,15 @@ var controller = botkit.slackbot({
   scopes: ['commands']
 });
 
-var bot = controller.spawn({
-  token: process.env.token
-}).startRTM();
+var bot = slackBot.spawn({ token: process.env.token }).startRTM();
 
 bot.api.team.info({}, function(err, res) {
-  controller.storage.teams.save(res.team, function(err) {});
+  slackBot.storage.teams.save(res.team, function(err) {});
 });
 
-controller.setupWebserver(process.env.PORT, function(err, webserver) {
-  controller.createWebhookEndpoints(controller.webserver);
-  controller.createOauthEndpoints(controller.webserver, function(err, req, res) {
+slackBot.setupWebserver(process.env.PORT, function(err, webserver) {
+  slackBot.createWebhookEndpoints(slackBot.webserver);
+  slackBot.createOauthEndpoints(slackBot.webserver, function(err, req, res) {
     if (err) {
       res.status(500).send('Error: ' + JSON.stringify(err));
     } else {
@@ -29,7 +27,7 @@ controller.setupWebserver(process.env.PORT, function(err, webserver) {
   });
 });
 
-controller.on('slash_command', function(bot, message) {
+slackBot.on('slash_command', function(bot, message) {
   switch (message.command) {
     case '/gakky':
       bot.replyPublic(message, 'https://pbs.twimg.com/media/DE8s-vCV0AAR-Z-.jpg');
