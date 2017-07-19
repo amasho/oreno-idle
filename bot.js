@@ -2,6 +2,7 @@ var botkit = require('botkit');
 
 var controller = botkit.slackbot({
   debug: false,
+  json_file_store: './simple_storage/'
 })
 .configureSlackApp({
   clientId: process.env.BOTKIT_SLACK_CLIENT_ID,
@@ -14,9 +15,7 @@ var bot = controller.spawn({
 }).startRTM();
 
 bot.api.team.info({}, function(err, res) {
-  controller.storage.teams.save({
-    id: res.team.id
-  }, function(err) {});
+  controller.storage.teams.save(res.team, function(err) {});
 });
 
 controller.setupWebserver(process.env.PORT, function(err, webserver) {
